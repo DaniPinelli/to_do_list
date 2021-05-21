@@ -25,17 +25,17 @@ export default {
       todos: [
         {
           id:0,
-          title: 'Comprar los topes de la silla',
+          title: 'Buy the chair tops',
           completed: false
         },
         {
           id:1,
-          title: 'Mandar email a tránsito',
+          title: 'Send email a transit',
           completed: false
         },
         {
           id:2,
-          title: 'Hacer publicación Facebook',
+          title: 'Do post Facebook',
           completed: false
         }
       ],
