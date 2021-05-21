@@ -1,25 +1,46 @@
 <template>
   <div>
     <div id="header"></div>
+    <Search/ v-on:query-change="querySearch" />
     <div id="main-container">
       <h2>Things To Do</h2>
-      <Todos v-bind:todosList="copyTodos" />
+      <TodoAdd v-on:add-todo="addTodo" />
+      <Todos v-bind:todosList="copyTodos"  v-on:delete-todo="deleteTodo" />
     </div>
   </div>
 </template>
 
 <script>
-
-//import Search from './components/Search';
+import Search from './components/Search';
 import Todos from './components/Todos';
-//import TodoAdd from './components/TodoAdd';
+import TodoAdd from './components/TodoAdd';
 
 
 export default {
   name: 'App',
   components: {
-    Todos
+    Todos, TodoAdd, Search
   },
+    methods: {
+      deleteTodo(id){
+        this.todos = this.todos.filter(todo => todo.id != id);
+        this.copyTodos = [...this.todos];
+      },
+      addTodo(todo){
+        this.todos.push(todo);
+        this.copyTodos = [...this.todos];
+      },
+      querySearch(query) {
+        if(query.trim() == ''){
+          this.copyTodos = [...this.todo];
+        } else {
+          const temp = this.todos.filter(todo => {
+            return todo.title.includes(query)
+          });
+          this.copyTodos = [...temp];
+        }
+      }
+    },
   data() {
     return {
       todos: [

@@ -1,17 +1,51 @@
 <template>
-    <div>
-        <div v-bind:key="todo.id" v-for="todo in todosList">
-        <div>{{todo.title}}</div>
+    <div id="add-container" >
+       <form @submit="addTodo" >
+           <input type="text" v-model="tittle" >
+       </form>
 
-        </div>
+        
     </div>
 </template>
 
 <script>
+import { uuid } from 'vue-uuid'; 
+
 export default {
-    name: 'Todos',
-    props: ['todoslist']
+    name: 'TodoAdd',
+    data () {
+        return{
+            title: ''
+        }
+    },
+    methods: {
+        addTodo(e){
+            e.preventDefault();
+
+            const newTodo = {
+                id: uuid.v4(),
+                tittle: this.tittle,
+                completed: false
+            };
+
+            this.tittle = '';
+            this.$emit('add-todo', newTodo)
+        }
+    }
+   
 }
 </script>
  
-<style></style> 
+<style scoped >
+    #add-container {
+        padding: 10px;
+    }
+
+    input {
+        padding: 10px;
+        outline: none;
+        border: solid 1px #ccc;
+        width: 100%;
+    }
+
+</style> 
