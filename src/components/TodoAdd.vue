@@ -1,10 +1,8 @@
 <template>
     <div id="add-container" >
        <form @submit="addTodo" >
-           <input type="text" v-model="tittle" >
+           <input type="text" v-model="title" >
        </form>
-
-        
     </div>
 </template>
 
@@ -24,12 +22,12 @@ export default {
 
             const newTodo = {
                 id: uuid.v4(),
-                tittle: this.tittle,
+                title: this.title,
                 completed: false
             };
 
-            this.tittle = '';
-            this.$emit('add-todo', newTodo)
+            this.title = '';
+            this.$emit('addTodo', newTodo);
         }
     }
    

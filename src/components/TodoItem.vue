@@ -6,7 +6,7 @@
         </div>
 
         <div class="todo-actions">
-            <button @click="$emit()" >Delete</button>
+            <button @click="$emit('delete-todo', todo.id)">Delete</button>
         </div>
     </div>
 </template>
@@ -55,6 +55,14 @@ export default {
 .todo-actions{
     padding: 0 10px;
     width: 10%;
+}
+
+button{
+    border: none;
+    border-radius: 3px;
+    padding: 10px;
+    background-color: #ccc;
+    color:black;
 }
 
 button:hover{

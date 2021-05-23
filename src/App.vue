@@ -1,10 +1,10 @@
 <template>
   <div>
     <div id="header"></div>
-    <Search/ v-on:query-change="querySearch" />
+    <Search v-on:query-change="querySearch" />
     <div id="main-container">
       <h2>Things To Do</h2>
-      <TodoAdd v-on:add-todo="addTodo" />
+      <TodoAdd v-on:addTodo="addTodo" />
       <Todos v-bind:todosList="copyTodos"  v-on:delete-todo="deleteTodo" />
     </div>
   </div>
@@ -31,8 +31,8 @@ export default {
         this.copyTodos = [...this.todos];
       },
       querySearch(query) {
-        if(query.trim() == ''){
-          this.copyTodos = [...this.todo];
+        if(query.trim() === ''){
+          this.copyTodos = [...this.todos];
         } else {
           const temp = this.todos.filter(todo => {
             return todo.title.includes(query)
@@ -58,6 +58,11 @@ export default {
           id:2,
           title: 'Do post Facebook',
           completed: false
+        },
+        {
+          id:3,
+          title: 'Finish the app',
+          completed: true
         }
       ],
       copyTodos: []
